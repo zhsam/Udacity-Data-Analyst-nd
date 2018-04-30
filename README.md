@@ -1,2 +1,2 @@
-# Udacity-Data-Analyst-nd
-All the Projects for my Udacity Data Analyst Nanodegree.
+# Udacity-data-analyst-nanodegree
+This repository includes project reports and learning notes for Udacity Data-Analyst Nanodegree(DAND).
