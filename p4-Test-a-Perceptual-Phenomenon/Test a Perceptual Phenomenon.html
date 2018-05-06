@@ -11787,8 +11787,8 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In this case,</p>
 <ul>
-<li>Independent Variable: list of words that the researcher displayed to the participant</li>
-<li>Dependent Variable: the time it takes to name the ink colors in equally-sized lists</li>
+<li>Independent Variable: the congruency of the colour and text.</li>
+<li>Dependent Variable: Duration (time) to recognise the colours or the texts</li>
 </ul>
 
 </div>
@@ -11799,6 +11799,16 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>(2) What is an appropriate set of hypotheses for this task? Specify your null and alternative hypotheses, and clearly define any notation used. Justify your choices.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ho: The Average time that the population spent in congruent tasks is equal or higher than incongruent tasks. <br>
+Ho: The Average time that the population spent in congruent tasks is equal or less than incongruent tasks.</p>
 
 </div>
 </div>
@@ -11822,9 +11832,18 @@ $$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Notation:</p>
 <ul>
-<li>mu_incongruent refers to the average time that participant spent in incongruent tasks</li>
-<li>mu_congruent refers to the average time that participant spent in congruent tasks</li>
+<li>mu_incongruent refers to the average time that the population spent in incongruent tasks</li>
+<li>mu_congruent refers to the average time that the population spent in congruent tasks</li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since we don't have population standards deviation and our sample size is very small, we should select one-tailed independent sample t-test for this question. We assume that the population are Normal.</p>
 
 </div>
 </div>
@@ -11840,7 +11859,7 @@ $$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -11860,7 +11879,7 @@ $$</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[4]:</div>
+<div class="prompt output_prompt">Out[2]:</div>
 
 
 
@@ -11916,6 +11935,39 @@ $$</p>
   </tbody>
 </table>
 </div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(24, 2)</pre>
 </div>
 
 </div>
@@ -12034,7 +12086,7 @@ $$</p>
 <p>Incongruent:</p>
 <ul>
 <li>mean = 22.015917</li>
-<li>std = 18.72</li>
+<li>std = 4.797057</li>
 </ul>
 <p><strong>We can see that the Incongruent data has higher mean time spent and larger variability compared to Congruent data.</strong></p>
 
@@ -12269,17 +12321,16 @@ We can see that the Incongruent data is more divergent with higher value of time
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Perform the statistical test here</span>
 <span class="kn">import</span> <span class="nn">statsmodels</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="kn">from</span> <span class="nn">pandas.core</span> <span class="k">import</span> <span class="n">datetools</span>
 <span class="n">incongruent</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Incongruent&#39;</span><span class="p">]</span>
 <span class="n">congruent</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Congruent&#39;</span><span class="p">]</span>
 
-<span class="n">z_score</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">weightstats</span><span class="o">.</span><span class="n">ztest</span><span class="p">(</span><span class="n">congruent</span><span class="p">,</span> <span class="n">incongruent</span><span class="p">,</span> <span class="n">alternative</span> <span class="o">=</span> <span class="s1">&#39;smaller&#39;</span><span class="p">)</span>
-<span class="n">z_score</span><span class="p">,</span> <span class="n">p_value</span>
+<span class="n">t_score</span><span class="p">,</span> <span class="n">p_value</span><span class="p">,</span> <span class="n">df</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">weightstats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">congruent</span><span class="p">,</span> <span class="n">incongruent</span><span class="p">,</span> <span class="n">alternative</span> <span class="o">=</span> <span class="s1">&#39;smaller&#39;</span><span class="p">)</span>
+<span class="n">t_score</span><span class="p">,</span> <span class="n">p_value</span><span class="p">,</span> <span class="n">df</span>
 </pre></div>
 
 </div>
@@ -12292,13 +12343,13 @@ We can see that the Incongruent data is more divergent with higher value of time
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[19]:</div>
+<div class="prompt output_prompt">Out[17]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(-6.5322505539032285, 3.2394324210736636e-11)</pre>
+<pre>(-6.5322505539032303, 2.2974744811475801e-08, 46.0)</pre>
 </div>
 
 </div>
@@ -12311,7 +12362,7 @@ We can see that the Incongruent data is more divergent with higher value of time
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Since z-score &lt; 1.96 (critical value when alpha = 0.05) and p-value &lt; p-critical = 0.05, We have strong evidence to reject the null hypothesis. We have 95% confidence that the average time spent in incongruent group is larger than the average time spent in congruent group.</p>
+<p>Since t-score &lt; -1.68 (critical value when df =46 and alpha = 0.05) and p-value &lt; p-critical = 0.05, We have strong evidence to reject the null hypothesis. We have 95% confidence that the average time spent in incongruent group is larger than the average time spent in congruent group.</p>
 
 </div>
 </div>
@@ -12340,9 +12391,22 @@ We can see that the Incongruent data is more divergent with higher value of time
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Reference">Reference<a class="anchor-link" href="#Reference">&#182;</a></h4><ul>
-<li><a href="http://web.ntpu.edu.tw/~stou/class/ntpu/CH11-Keller-in-Chinese-2011.pdf">
+<li><p><a href="http://web.ntpu.edu.tw/~stou/class/ntpu/CH11-Keller-in-Chinese-2011.pdf">
   Oveweview of Null & Alternative Hypothesis (Chinese) 
-</a></li>
+</a></p>
+</li>
+<li><p><a href="https://stats.stackexchange.com/questions/85804/choosing-between-z-test-and-t-test">
+  Choosing between z-test and t-test
+</a></p>
+</li>
+<li><p><a href="http://charngro.blogspot.tw/2016/01/blog-post_24.html">
+  Inferential Statistics (Chinese)
+</a></p>
+</li>
+<li><p><a href="https://learn5.open.ac.uk/pluginfile.php/103/mod_resource/content/1/How%20to%20use%20the%20T-test.pdf">
+  How to use the t-Test
+</a></p>
+</li>
 </ul>
 
 </div>
