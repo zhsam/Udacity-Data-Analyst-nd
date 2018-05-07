@@ -11776,8 +11776,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Analyzing-the-Stroop-Effect">Analyzing the Stroop Effect<a class="anchor-link" href="#Analyzing-the-Stroop-Effect">&#182;</a></h3><p>Perform the analysis in the space below. Remember to follow <a href="https://docs.google.com/document/d/1-OkpZLjG_kX9J6LIQ5IltsqMzVWjh36QpnP2RYpVdPU/pub?embedded=True">the instructions</a> and review the <a href="https://review.udacity.com/#!/rubrics/71/view">project rubric</a> before submitting. Once you've completed the analysis and write up, download this file as a PDF or HTML file and submit in the final section of this lesson.</p>
-<p>(1) What is the independent variable? What is the dependent variable?</p>
-
+<h4 id="(1)-What-is-the-independent-variable?-What-is-the-dependent-variable?">(1) What is the independent variable? What is the dependent variable?<a class="anchor-link" href="#(1)-What-is-the-independent-variable?-What-is-the-dependent-variable?">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -11798,8 +11797,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>(2) What is an appropriate set of hypotheses for this task? Specify your null and alternative hypotheses, and clearly define any notation used. Justify your choices.</p>
-
+<h4 id="(2)-What-is-an-appropriate-set-of-hypotheses-for-this-task?-Specify-your-null-and-alternative-hypotheses,-and-clearly-define-any-notation-used.-Justify-your-choices.">(2) What is an appropriate set of hypotheses for this task? Specify your null and alternative hypotheses, and clearly define any notation used. Justify your choices.<a class="anchor-link" href="#(2)-What-is-an-appropriate-set-of-hypotheses-for-this-task?-Specify-your-null-and-alternative-hypotheses,-and-clearly-define-any-notation-used.-Justify-your-choices.">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -11807,7 +11805,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Ho: The Average time that the population spent in congruent tasks is equal or higher than incongruent tasks. <br>
+<p>Ho: The Average time that the population spent in congruent tasks is equal to incongruent tasks. <br>
 Ho: The Average time that the population spent in congruent tasks is equal or less than incongruent tasks.</p>
 
 </div>
@@ -11843,7 +11841,8 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Since we don't have population standards deviation and our sample size is very small, we should select one-tailed independent sample t-test for this question. We assume that the population are Normal.</p>
+<p>Since we don't have population standards deviation and our sample size is very small, we should select:</p>
+<p>"Two-sample dependent T-test: 1-tailed" for this question. We assume that the population is Normal.</p>
 
 </div>
 </div>
@@ -11852,14 +11851,13 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>(3) Report some descriptive statistics regarding this dataset. Include at least one measure of central tendency and at least one measure of variability. The name of the data file is 'stroopdata.csv'.</p>
-
+<h4 id="(3)-Report-some-descriptive-statistics-regarding-this-dataset.-Include-at-least-one-measure-of-central-tendency-and-at-least-one-measure-of-variability.-The-name-of-the-data-file-is-'stroopdata.csv'.">(3) Report some descriptive statistics regarding this dataset. Include at least one measure of central tendency and at least one measure of variability. The name of the data file is 'stroopdata.csv'.<a class="anchor-link" href="#(3)-Report-some-descriptive-statistics-regarding-this-dataset.-Include-at-least-one-measure-of-central-tendency-and-at-least-one-measure-of-variability.-The-name-of-the-data-file-is-'stroopdata.csv'.">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -11879,7 +11877,7 @@ $$</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[2]:</div>
+<div class="prompt output_prompt">Out[30]:</div>
 
 
 
@@ -11945,7 +11943,7 @@ $$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
@@ -11961,7 +11959,7 @@ $$</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[4]:</div>
+<div class="prompt output_prompt">Out[31]:</div>
 
 
 
@@ -11978,7 +11976,7 @@ $$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Perform the analysis here</span>
@@ -11995,7 +11993,7 @@ $$</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[3]:</div>
+<div class="prompt output_prompt">Out[32]:</div>
 
 
 
@@ -12097,14 +12095,13 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>(4) Provide one or two visualizations that show the distribution of the sample data. Write one or two sentences noting what you observe about the plot or plots.</p>
-
+<h4 id="(4)-Provide-one-or-two-visualizations-that-show-the-distribution-of-the-sample-data.-Write-one-or-two-sentences-noting-what-you-observe-about-the-plot-or-plots.">(4) Provide one or two visualizations that show the distribution of the sample data. Write one or two sentences noting what you observe about the plot or plots.<a class="anchor-link" href="#(4)-Provide-one-or-two-visualizations-that-show-the-distribution-of-the-sample-data.-Write-one-or-two-sentences-noting-what-you-observe-about-the-plot-or-plots.">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Congruent Data</span>
@@ -12199,7 +12196,7 @@ Ygg3ABRDuAGgGMINAMUQbgAohnADQDGEGwCK+T8pS5XxOI3qywAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Incongruent Data</span>
@@ -12314,23 +12311,24 @@ We can see that the Incongruent data is more divergent with higher value of time
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>(5)  Now, perform the statistical test and report your results. What is your confidence level or Type I error associated with your test? What is your conclusion regarding the hypotheses you set up? Did the results match up with your expectations? <strong>Hint:</strong>  Think about what is being measured on each individual, and what statistic best captures how an individual reacts in each environment.</p>
-
+<h4 id="(5)--Now,-perform-the-statistical-test-and-report-your-results.-What-is-your-confidence-level-or-Type-I-error-associated-with-your-test?-What-is-your-conclusion-regarding-the-hypotheses-you-set-up?-Did-the-results-match-up-with-your-expectations?-Hint:--Think-about-what-is-being-measured-on-each-individual,-and-what-statistic-best-captures-how-an-individual-reacts-in-each-environment.">(5)  Now, perform the statistical test and report your results. What is your confidence level or Type I error associated with your test? What is your conclusion regarding the hypotheses you set up? Did the results match up with your expectations? <strong>Hint:</strong>  Think about what is being measured on each individual, and what statistic best captures how an individual reacts in each environment.<a class="anchor-link" href="#(5)--Now,-perform-the-statistical-test-and-report-your-results.-What-is-your-confidence-level-or-Type-I-error-associated-with-your-test?-What-is-your-conclusion-regarding-the-hypotheses-you-set-up?-Did-the-results-match-up-with-your-expectations?-Hint:--Think-about-what-is-being-measured-on-each-individual,-and-what-statistic-best-captures-how-an-individual-reacts-in-each-environment.">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Perform the statistical test here</span>
-<span class="kn">import</span> <span class="nn">statsmodels</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="k">import</span> <span class="n">ttest_rel</span>
+<span class="c1"># Note: ttest_rel is for 2-tailed dependent t-test</span>
+
 <span class="n">incongruent</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Incongruent&#39;</span><span class="p">]</span>
 <span class="n">congruent</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Congruent&#39;</span><span class="p">]</span>
 
-<span class="n">t_score</span><span class="p">,</span> <span class="n">p_value</span><span class="p">,</span> <span class="n">df</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">weightstats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">congruent</span><span class="p">,</span> <span class="n">incongruent</span><span class="p">,</span> <span class="n">alternative</span> <span class="o">=</span> <span class="s1">&#39;smaller&#39;</span><span class="p">)</span>
-<span class="n">t_score</span><span class="p">,</span> <span class="n">p_value</span><span class="p">,</span> <span class="n">df</span>
+<span class="n">t_stat</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">ttest_rel</span><span class="p">(</span><span class="n">incongruent</span><span class="p">,</span> <span class="n">congruent</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">t_stat</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12343,13 +12341,45 @@ We can see that the Incongruent data is more divergent with higher value of time
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[17]:</div>
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>8.02070694411 4.10300058571e-08
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Calculate p/2</span>
+<span class="n">p</span><span class="o">/</span><span class="mi">2</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[44]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(-6.5322505539032303, 2.2974744811475801e-08, 46.0)</pre>
+<pre>2.0515002928555891e-08</pre>
 </div>
 
 </div>
@@ -12362,7 +12392,8 @@ We can see that the Incongruent data is more divergent with higher value of time
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Since t-score &lt; -1.68 (critical value when df =46 and alpha = 0.05) and p-value &lt; p-critical = 0.05, We have strong evidence to reject the null hypothesis. We have 95% confidence that the average time spent in incongruent group is larger than the average time spent in congruent group.</p>
+<p>The one-sided tests can be backed out from the two-sided tests. (With symmetric distributions one-sided p-value is just half of the two-sided pvalue) As a result, given p and t values from a two-tailed test, we could reject the null hypothesis of a greater-than test when p/2 &lt; alpha and t &gt; 0.</p>
+<p>In this case, as  <code>p/2 = 2.05e-08 &lt; alpha = 0.05</code> and <code>t-score = 8.02 &gt; 0</code>,  we have strong evidence to reject the null hypothesis. To sum up, we have 95% confidence that the average time spent in incongruent group is larger than the average time spent in congruent group.</p>
 
 </div>
 </div>
@@ -12371,8 +12402,7 @@ We can see that the Incongruent data is more divergent with higher value of time
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>(6) Optional: What do you think is responsible for the effects observed? Can you think of an alternative or similar task that would result in a similar effect? Some research about the problem will be helpful for thinking about these two questions!</p>
-
+<h4 id="(6)-Optional:-What-do-you-think-is-responsible-for-the-effects-observed?-Can-you-think-of-an-alternative-or-similar-task-that-would-result-in-a-similar-effect?-Some-research-about-the-problem-will-be-helpful-for-thinking-about-these-two-questions!">(6) Optional: What do you think is responsible for the effects observed? Can you think of an alternative or similar task that would result in a similar effect? Some research about the problem will be helpful for thinking about these two questions!<a class="anchor-link" href="#(6)-Optional:-What-do-you-think-is-responsible-for-the-effects-observed?-Can-you-think-of-an-alternative-or-similar-task-that-would-result-in-a-similar-effect?-Some-research-about-the-problem-will-be-helpful-for-thinking-about-these-two-questions!">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -12405,6 +12435,10 @@ We can see that the Incongruent data is more divergent with higher value of time
 </li>
 <li><p><a href="https://learn5.open.ac.uk/pluginfile.php/103/mod_resource/content/1/How%20to%20use%20the%20T-test.pdf">
   How to use the t-Test
+</a></p>
+</li>
+<li><p><a href="https://stackoverflow.com/questions/15984221/how-to-perform-two-sample-one-tailed-t-test-with-numpy-scipy">
+ 2 Sample, 1 Tailed t-test
 </a></p>
 </li>
 </ul>
