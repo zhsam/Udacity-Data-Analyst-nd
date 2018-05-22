@@ -47,6 +47,25 @@ As the key question is to understand which chemical properties are the most impo
 names(rw)
 ```
 
+First, let's take a look for the distribution of quality.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore quality
+ggplot(aes(quality), data = rw) +
+  geom_histogram()
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore quality
+summary(rw$quality)
+```
+All the red wine quality ratings are range from 3 - 8. 
+There's no any wine that was rated super bad(0-2) or super awesome(9-10).
+Moreover, most of the wines are rated between 5-6.
+The mean of the quality ratings is 5.636 and the median of the quality ratings is 6.000.
+
+Now's take a closer look at the 11 chemical properties within the data set.
+
 1. fixed.acidity(original)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
@@ -70,6 +89,14 @@ ggplot(aes(fixed.acidity), data = rw) +
 ```
 
 The Log plot is much closer to the bell curve of a normal distribution.
+Let's see the summary:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore fixed.acidity
+summary(rw$fixed.acidity)
+```
+The mean for fixed.acidity is 8.32 and the median is 7.90. 
+Most of the red wines have the fixed.acidity between 7.10 to 9.20. 
 
 2. volatile.acidity
 
@@ -80,6 +107,13 @@ ggplot(aes(volatile.acidity), data = rw) +
 ```
 
 The histogram of volatile.acidity shows that volatile.acidity is slightly right-skewed. 
+Let's the summary of volatile.acidity:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore volatile.acidity
+summary(rw$volatile.acidity)
+```
+Most of the red wines have the volatile.acidity from about 0.40 to o.65.
 
 3. citric.acid
 
@@ -89,8 +123,16 @@ ggplot(aes(citric.acid), data = rw) +
   geom_histogram()
 ```
 
-The histogram of citric.acidity is a bit weird. Most of the data has citric.acid = 0. This may need future exploration.
-Let's see the square root plot for citric.acidity.
+The histogram of citric.acidity shows that most of the data has citric.acid = 0. This may need future exploration.
+Let's see the summary for citric.acidity.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore citric.acid -- summary
+summary(rw$citric.acid)
+```
+
+The smallest value for citric.acid is 0.000 and the largest value for citric.acid is 1.000. However, 75% of the values are below 0.420. 
+Let's see the square root distribution.
 
 3. citric.acid(sqrt)
 
@@ -101,7 +143,9 @@ ggplot(aes(citric.acid), data = rw) +
   scale_x_sqrt()
 ```
 
-From the square root plot, we can see that there's a blank part at about 0.1. Later on we may want to explore more about citric.acid.
+Since in the first plot, 0 is the value that has the largest count, after taking the square root, most of the values are still 0.
+As most of the data are between 0 and 1, after taking the square root, they will become bigger value. As a result, there is a blank spot in the plot.
+I wonder how citric.acid is connected to quality, and I wonder if the citric.acid values are specific to certain alcoholic levels.
 
 4. residual.sugar
 
@@ -123,6 +167,14 @@ ggplot(aes(residual.sugar), data = rw) +
 ```
 
 We can see from the log plot that the distribution for residual.sugar is more close to normal distribution.
+Let's see the summary ofresidual.sugar:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore residual.sugar
+summary(rw$residual.sugar)
+```
+
+Most red wines have residual.sugar values between 1.9 to 2.6.
 
 5. chlorides
 
@@ -143,7 +195,16 @@ ggplot(aes(chlorides), data = rw) +
   scale_x_log10()
 ```
 
-The Log plot is much closer to the bell curve of a normal distribution. With largest value near 0.09
+The Log plot is much closer to the bell curve of a normal distribution.
+Let's see the summary for chlorides:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore chlorides
+summary(rw$chlorides)
+```
+
+Most of the red wines have chlorides range between 0.07 to 0.09. 
+75% of the red wines have chlorides below 0.09.
 
 6. free.sulfur.dioxide
 
@@ -158,13 +219,20 @@ The histogram of free,sulfur.dioxide is right-skewed. Let's see the log plot.
 6. free.sulfur.dioxide(log)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-# Explore free.sulfur.dioxide
+# Explore free.sulfur.dioxide -- log10
 ggplot(aes(free.sulfur.dioxide), data = rw) +
   geom_histogram() +
   scale_x_log10()
 ```
 
-From the log plot, we can see that there's an obvious drop nearby 9, we may want to know more about what' going on here.
+Let's see the summary for free.sulfur.dioxide:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore free.sulfur.dioxide
+summary(rw$free.sulfur.dioxide)
+```
+
+The largest value for the free.sulfur.dioxide in a red wine is 72.00 which is far away from the 3rd Quantile(21.00) and median(14.00).
 
 7. total.sulfur.dioxide
 
@@ -179,13 +247,22 @@ The histogram of total.sulfur.dioxide is long-tailed. Let's see the log plot.
 7. total.sulfur.dioxide(log)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-# Explore free.sulfur.dioxide
+# Explore free.sulfur.dioxide -- log
 ggplot(aes(total.sulfur.dioxide), data = rw) +
   geom_histogram() +
   scale_x_log10()
 ```
 
-The log plot for total.sulfur.dioxide is close to the bell surve.
+The log plot for total.sulfur.dioxide is close to the bell surve. 
+Let's see the summary of total.sulfur.dioxide:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore free.sulfur.dioxide
+summary(rw$total.sulfur.dioxide)
+```
+
+For the distribution of total.sulfur.dioxide, the mean value is 46.47, and the median value is 38.00. 
+75% of the total.sulfur.dioxide value is below 62.00 while the max value is 289.00.
 
 8. density
 
@@ -196,6 +273,14 @@ ggplot(aes(density), data = rw) +
 ```
 
 The distribution for density shown in this histogram is close to the pattern for normal distribution.
+Let's see the summary of density:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore density
+summary(rw$density)
+```
+Combine the results of the histogram and summary, we can see the density is close to normal distribution, range from 0.9901 to 1.0037.
+The median(0.9968) and mean(0.9967) is almost the same!
 
 9. pH
 
@@ -206,6 +291,16 @@ ggplot(aes(pH), data = rw) +
 ```
 
 The pattern for pH's histogram is close to normal distribution.
+Let's summary of pH:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore pH
+summary(rw$pH)
+```
+
+The max value of pH is 4.010 which indicates that all the red wines are acid(pH<7).
+Combine the results of the histogram and summary, we can see the pH is close to normal distribution, range from 2.740 to 4.010.
+The median(3.3310) and mean(3.311) is almost the same!
 
 10. sulphates
 
@@ -227,6 +322,14 @@ ggplot(aes(sulphates), data = rw) +
 ```
 
 The log plot for sulphates is more close to the bell curve.
+Let's see the summary of sulphates:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore sulphates
+summary(rw$sulphates)
+```
+
+Most of the red wines have the value of sulphates between 0.55 to 0.73 while the Max value is 2.00.
 
 11. alcohol
 
@@ -247,37 +350,53 @@ ggplot(aes(alcohol), data = rw) +
   scale_x_log10()
 ```
 
-After taking the log, the data is still slightly right-skewed. Moreover, there is a gap from 8-10. We may want to look into more details for alcohol datas.
-
-
-12. quality
+Let's see the summary for alcohol:
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-# Explore quality
-ggplot(aes(quality), data = rw) +
-  geom_histogram()
+# Explore alcohol
+summary(rw$alcohol)
 ```
-
-The distribution for the quality is pretty normal.
+The alcohol percentage for the red wines are range from 8.40 to 14.90. 
+I wonder if the alcohol effects the quality.
 
 # Univariate Analysis
 
-> **Tip**: Now that you've completed your univariate explorations, it's time to
-reflect on and summarize what you've found. Use the questions below to help you
-gather your observations and add your own if you have other thoughts!
-
 ### What is the structure of your dataset?
+There are 1,599 red wines in the data with 11 chemical properties(fixed.acidity, volatile.acidity, citric.acid, residual.sugar, chlorides, free.sulfur.dioxide, total.sulfur.dioxide, density, pH, sulphates, alcohol). 
+
+##### Other Observations:
+* Most of the wines are rated from 5-6.
+* Chemical Properties that is right-skewed: fixed.acidity, citric.acid, residual.sugar, chlorides, free.sulfur.dioxide, total.sulfur.dioxide, sulphates, alcohol.
+* Residual.sugar and Chlorides are heavily long-tailed. 
+* Chemical Properties that is close to normal distribution: pH, density
+* Most of the red wines have the volatile.acidity from about 0.40 to o.65.
+* Most of the red wines have chlorides range between 0.07 to 0.09. 
+* Most red wines have residual.sugar values between 1.9 to 2.6.
+* 75% of the red wines have chlorides below 0.09, while the max value is 0.61.
+* The max value of pH is 4.010 which indicates that all the red wines are acid(pH<7).
+* Most of the red wines have the value of sulphates between 0.55 to 0.73 while the Max value is 2.00.
 
 ### What is/are the main feature(s) of interest in your dataset?
+
+The main features in the data set are quality and alcohol. I’d like to determine which features are best for predicting the quality for red wine. I suspect residual.sugar and some combination of the other variables can be used to build a predictive model to red wine quality.
 
 ### What other features in the dataset do you think will help support your \
 investigation into your feature(s) of interest?
 
+volatile.acidity, residual.sugar, chlorides, density, pH and sulphates likely contribute to the quality of red wine. I think residual.sugar and pH probably contribute most of the quality after researching information on red wines quality.
+
 ### Did you create any new variables from existing variables in the dataset?
+Not at the moment.
 
 ### Of the features you investigated, were there any unusual distributions? \
 Did you perform any operations on the data to tidy, adjust, or change the form \
 of the data? If so, why did you do this?
+I log-transformed the right skewed price and volume distributions.(fixed-acidity, residual.sugar, chlorides, free.sulfur.dioxide, total.sulfur.dioxide, sulphates, alcohol)
+
+The tranformed distribution for 
+citric -- sqrt
+price appears bimodal with the price peaking around $800 or so and again around $5000. There’s no diamonds priced at $1500.
+
 
 
 # Bivariate Plots Section
@@ -289,6 +408,7 @@ supporting variables. Try to look at relationships between supporting variables
 as well.
 
 ```{r echo=FALSE, Bivariate_Plots}
+ggpair()
 
 
 
@@ -372,6 +492,8 @@ make sure you justify why you chose each plot by describing what it shows.
 
 # Reflection
 
+- Country/Region that the red wine is produced.
+- Storage condition
 > **Tip**: Here's the final step! Reflect on the exploration you performed and
 the insights you found. What were some of the struggles that you went through?
 What went well? What was surprising? Make sure you include an insight into
