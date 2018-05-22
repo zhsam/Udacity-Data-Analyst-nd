@@ -3,13 +3,10 @@ Red Wine Exploration by Sam Chen
 
 > **Overview**: This data set contains 1,599 red wines with 11 variables on the chemical properties of the wine. At least 3 wine experts rated the quality of each wine, providing a rating between 0 (very bad) and 10 (very excellent).
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, packages}
-# Load all of the packages that you end up using in your analysis in this code
-# chunk.
+> **Key question**: "Which chemical properties influence the quality of red wines?"
 
-# The other parameters for "message" and "warning" should also be set to FALSE
-# for other code chunks once you have verified that each plot comes out as you
-# want it to. This will clean up the flow of your report.
+```{r echo=FALSE, message=FALSE, warning=FALSE, packages}
+# Load all of the packages that you end up using in your analysis.
 # install.packages("ggplot2", dependencies = T) 
 # install.packages("knitr", dependencies = T)
 # install.packages("dplyr", dependencies = T)
@@ -41,13 +38,86 @@ str(rw)
 summary(rw)
 ```
 
-Our data consists of 11 variables, with almost 1,600 observations.
+Our data consists of 13 variables, with almost 1,600 observations.
 
-> **Tip**: Make sure that you leave a blank line between the start / end of
-each code block and the end / start of your Markdown text so that it is
-formatted nicely in the knitted text. Note as well that text on consecutive
-lines is treated as a single space. Make sure you have a blank line between
-your paragraphs so that they too are formatted for easy readability.
+As the key question is to understand which chemical properties influence the quality of red wine, I would like to first look at all the distribution plots for every chemical properties to see if there's anything catching my eye.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+names(rw)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore fixed.acidity
+# qplot -- qplot(fixed.acidity, data = rw)
+ggplot(aes(fixed.acidity), data = rw) +
+  geom_histogram()
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore volatile.acidity
+ggplot(aes(volatile.acidity), data = rw) +
+  geom_histogram()
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore citric.acid
+ggplot(aes(citric.acid), data = rw) +
+  geom_histogram()
+```
+        
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore residual.sugar
+ggplot(aes(residual.sugar), data = rw) +
+  geom_histogram()
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore chlorides
+ggplot(aes(chlorides), data = rw) +
+  geom_histogram()
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore free.sulfur.dioxide
+ggplot(aes(free.sulfur.dioxide), data = rw) +
+  geom_histogram()
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore total.sulfur.dioxide
+ggplot(aes(total.sulfur.dioxide), data = rw) +
+  geom_histogram()
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore density
+ggplot(aes(density), data = rw) +
+  geom_histogram()
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore pH
+ggplot(aes(pH), data = rw) +
+  geom_histogram()
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore sulphates
+ggplot(aes(sulphates), data = rw) +
+  geom_histogram()
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore alcohol
+ggplot(aes(alcohol), data = rw) +
+  geom_histogram()
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore quality
+ggplot(aes(quality), data = rw) +
+  geom_histogram()
+```
 
 # Univariate Analysis
 
@@ -78,6 +148,8 @@ supporting variables. Try to look at relationships between supporting variables
 as well.
 
 ```{r echo=FALSE, Bivariate_Plots}
+
+
 
 ```
 
