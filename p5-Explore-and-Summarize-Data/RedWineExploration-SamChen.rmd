@@ -3,7 +3,7 @@ Red Wine Exploration by Sam Chen
 
 > **Overview**: This data set contains 1,599 red wines with 11 variables on the chemical properties of the wine. At least 3 wine experts rated the quality of each wine, providing a rating between 0 (very bad) and 10 (very excellent).
 
-> **Key question**: "Which chemical properties influence the quality of red wines?"
+> **Key question**: "What chemical properties are most important in terms of predicting the quality of wine?"
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, packages}
 # Load all of the packages that you end up using in your analysis.
@@ -39,12 +39,15 @@ summary(rw)
 ```
 
 Our data consists of 13 variables, with almost 1,600 observations.
+There are 11 variables on the chemical properties of the wine.
 
-As the key question is to understand which chemical properties influence the quality of red wine, I would like to first look at all the distribution plots for every chemical properties to see if there's anything catching my eye.
+As the key question is to understand which chemical properties are the most important of predicing the quality of red wine, I would like to first look at all the distribution plots for all the 11 chemical properties to see if there's anything catching my eye.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 names(rw)
 ```
+
+1. fixed.acidity(original)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # Explore fixed.acidity
@@ -53,23 +56,75 @@ ggplot(aes(fixed.acidity), data = rw) +
   geom_histogram()
 ```
 
+The histogram of fixed.acidity shows that fixed.acidity is slightly skewed to the right.
+Let's see the log plot.
+
+1. fixed.acidity(log)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore fixed.acidity
+# qplot -- qplot(fixed.acidity, data = rw)
+ggplot(aes(fixed.acidity), data = rw) +
+  geom_histogram() + 
+  scale_x_log10(breaks=4:16)
+```
+
+The Log plot is much closer to the bell curve of a normal distribution.
+
+2. volatile.acidity
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # Explore volatile.acidity
 ggplot(aes(volatile.acidity), data = rw) +
   geom_histogram()
 ```
 
+The histogram of volatile.acidity shows that volatile.acidity is slightly right-skewed. 
+
+3. citric.acid
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # Explore citric.acid
 ggplot(aes(citric.acid), data = rw) +
   geom_histogram()
 ```
-        
+
+The histogram of citric.acidity is a bit weird. Most of the data has citric.acid = 0. This may need future exploration.
+Let's see the square root plot for citric.acidity.
+
+3. citric.acid(sqrt)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore citric.acid -- sqrt
+ggplot(aes(citric.acid), data = rw) +
+  geom_histogram() + 
+  scale_x_sqrt()
+```
+
+From the square root plot, we can see that there's a blank part at about 0.1. Later on we may want to explore more about citric.acid.
+
+4. residual.sugar
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # Explore residual.sugar
 ggplot(aes(residual.sugar), data = rw) +
   geom_histogram()
 ```
+
+From the histogram of residual.sugar, we can see that it's very long-tailed. Let's see the log plot.
+
+4. residual.sugar(log)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore residual.sugar
+ggplot(aes(residual.sugar), data = rw) +
+  geom_histogram() + 
+  scale_x_log10()
+```
+
+We can see from the log plot that the distribution for residual.sugar is more close to normal distribution.
+
+5. chlorides
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # Explore chlorides
@@ -77,11 +132,41 @@ ggplot(aes(chlorides), data = rw) +
   geom_histogram()
 ```
 
+From the histogram of chlorides, we can see that it's very long-tailed. Let's see the log plot.
+
+5. chlorides(log)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore chlorides
+ggplot(aes(chlorides), data = rw) +
+  geom_histogram() + 
+  scale_x_log10()
+```
+
+The Log plot is much closer to the bell curve of a normal distribution. With largest value near 0.09
+
+6. free.sulfur.dioxide
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # Explore free.sulfur.dioxide
 ggplot(aes(free.sulfur.dioxide), data = rw) +
   geom_histogram()
 ```
+
+The histogram of free,sulfur.dioxide is right-skewed. Let's see the log plot.
+
+6. free.sulfur.dioxide(log)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore free.sulfur.dioxide
+ggplot(aes(free.sulfur.dioxide), data = rw) +
+  geom_histogram() +
+  scale_x_log10()
+```
+
+From the log plot, we can see that there's an obvious drop nearby 9, we may want to know more about what' going on here.
+
+7. total.sulfur.dioxide
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # Explore total.sulfur.dioxide
@@ -89,11 +174,30 @@ ggplot(aes(total.sulfur.dioxide), data = rw) +
   geom_histogram()
 ```
 
+The histogram of total.sulfur.dioxide is long-tailed. Let's see the log plot.
+
+7. total.sulfur.dioxide(log)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore free.sulfur.dioxide
+ggplot(aes(total.sulfur.dioxide), data = rw) +
+  geom_histogram() +
+  scale_x_log10()
+```
+
+The log plot for total.sulfur.dioxide is close to the bell surve.
+
+8. density
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # Explore density
 ggplot(aes(density), data = rw) +
   geom_histogram()
 ```
+
+The distribution for density shown in this histogram is close to the pattern for normal distribution.
+
+9. pH
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # Explore pH
@@ -101,11 +205,30 @@ ggplot(aes(pH), data = rw) +
   geom_histogram()
 ```
 
+The pattern for pH's histogram is close to normal distribution.
+
+10. sulphates
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # Explore sulphates
 ggplot(aes(sulphates), data = rw) +
   geom_histogram()
 ```
+
+It seems that the distribution for sulphates is right-skewed. Let's see the log plot.
+
+10. sulphates(log)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore sulphates -- log
+ggplot(aes(sulphates), data = rw) +
+  geom_histogram() +
+  scale_x_log10()
+```
+
+The log plot for sulphates is more close to the bell curve.
+
+11. alcohol
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # Explore alcohol
@@ -113,11 +236,29 @@ ggplot(aes(alcohol), data = rw) +
   geom_histogram()
 ```
 
+The distribution for the alcohol shown in this histogram is right-skewed. Let's see the log plot.
+
+11. alcohol(log)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Explore alcohol -- log
+ggplot(aes(alcohol), data = rw) +
+  geom_histogram() +
+  scale_x_log10()
+```
+
+After taking the log, the data is still slightly right-skewed. Moreover, there is a gap from 8-10. We may want to look into more details for alcohol datas.
+
+
+12. quality
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # Explore quality
 ggplot(aes(quality), data = rw) +
   geom_histogram()
 ```
+
+The distribution for the quality is pretty normal.
 
 # Univariate Analysis
 
