@@ -1,9 +1,18 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
 Red Wine Exploration by Sam Chen
 ========================================================
 
 > **Overview**: This data set contains 1,599 red wines with 11 variables on the chemical properties of the wine. At least 3 wine experts rated the quality of each wine, providing a rating between 0 (very bad) and 10 (very excellent).
 
 > **Key question**: "What chemical properties are most important in terms of predicting the quality of wine?"
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(message=FALSE, warning=FALSE,echo=FALSE)
+```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, packages}
 # Load all of the packages that you end up using in your analysis.
@@ -59,6 +68,7 @@ ggplot(aes(quality), data = rw) +
 # Explore quality
 summary(rw$quality)
 ```
+
 All the red wine quality ratings are range from 3 - 8. 
 There's no any wine that was rated super bad(0-2) or super awesome(9-10).
 Moreover, most of the wines are rated between 5-6.
@@ -95,6 +105,7 @@ Let's see the summary:
 # Explore fixed.acidity
 summary(rw$fixed.acidity)
 ```
+
 The mean for fixed.acidity is 8.32 and the median is 7.90. 
 Most of the red wines have the fixed.acidity between 7.10 to 9.20. 
 
@@ -113,6 +124,7 @@ Let's the summary of volatile.acidity:
 # Explore volatile.acidity
 summary(rw$volatile.acidity)
 ```
+
 Most of the red wines have the volatile.acidity from about 0.40 to o.65.
 
 3. citric.acid
@@ -279,6 +291,7 @@ Let's see the summary of density:
 # Explore density
 summary(rw$density)
 ```
+
 Combine the results of the histogram and summary, we can see the density is close to normal distribution, range from 0.9901 to 1.0037.
 The median(0.9968) and mean(0.9967) is almost the same!
 
@@ -356,15 +369,18 @@ Let's see the summary for alcohol:
 # Explore alcohol
 summary(rw$alcohol)
 ```
+
 The alcohol values for the red wines are range from 8.40 to 14.90. 
 I wonder if the alcohol effects the quality.
 
 # Univariate Analysis
 
 ### What is the structure of your dataset?
+
 There are 1,599 red wines in the data with 11 chemical properties(fixed.acidity, volatile.acidity, citric.acid, residual.sugar, chlorides, free.sulfur.dioxide, total.sulfur.dioxide, density, pH, sulphates, alcohol). 
 
 ##### Other Observations:
+
 * Most of the wines are rated from 5-6.
 * Chemical Properties that is right-skewed: fixed.acidity, citric.acid, residual.sugar, chlorides, free.sulfur.dioxide, total.sulfur.dioxide, sulphates, alcohol.
 * Most of the red wines have the volatile.acidity from about 0.40 to o.65.
@@ -387,11 +403,13 @@ investigation into your feature(s) of interest?
 volatile.acidity, residual.sugar, chlorides, density, sulphates and alcohol likely contribute to the quality of red wine. I think volatile.acidity and alcohol probably contribute most of the quality after researching information on red wines quality.
 
 ### Did you create any new variables from existing variables in the dataset?
+
 Not at the moment.
 
 ### Of the features you investigated, were there any unusual distributions? \
 Did you perform any operations on the data to tidy, adjust, or change the form \
 of the data? If so, why did you do this?
+
 I log-transformed the right-skewed distributions.(fixed-acidity, residual.sugar, chlorides, free.sulfur.dioxide, total.sulfur.dioxide, sulphates, alcohol) 
 
 # Bivariate Plots Section
@@ -400,7 +418,7 @@ I log-transformed the right-skewed distributions.(fixed-acidity, residual.sugar,
 round(cor(rw), 3)
 ```
 
-```{r echo=FALSE}
+```{r echo=FALSE, warning=FALSE, fig.width=15, fig.height=9, pair_plots}
 # install.packages('GGally')
 # install.packages('scales')
 # install.packages('memisc')
@@ -474,6 +492,7 @@ volatile_lm = lm(formula = quality ~ volatile.acidity, data = subset(rw, volatil
 ```{r echo=FALSE}
 summary(volatile_lm)
 ```
+
 From the summary, we know that based on R^2 value, alcohol only explains 14.74% of red wines' quality.
 
 Finally, let's see the scatter plot between quality and density:
@@ -535,6 +554,7 @@ summary(sulphates_lm)
 Based on R^2 value, sulphates only explains 7.651% of red wines' quality!
 
 Now, let's see the scatter plot for quality and citric.acid:
+
 ```{r echo=FALSE}
 ggplot(aes(x = citric.acid, y= quality), data = rw) + 
     geom_point()
@@ -601,11 +621,13 @@ We found that quality is lack of correlation with citric.acid, total.sulfur.diox
 
 ### Did you observe any interesting relationships between the other features \
 (not the main feature(s) of interest)?
+
 - fixed.acidity appears to have a strong correlation with citric.acid, this may due to they are both acidity chemical features.
 - free.sulfur.dioxide appears to have a strong correlation with total.sulfur.dioxide, this may due to they are both a kind of sulfur.dioxide.
 - fixed.acidity appears to have a strong and negative correlation with pH, this lines up with the definition of pH values. 
 
 ### What was the strongest relationship you found?
+
 The quality of red wines is positively and strongly correlated with sulphates and slightly correlated with alcohol and volatile.acidity.. 
 
 # Multivariate Plots Section
@@ -661,6 +683,7 @@ ggplot(aes(x = volatile.acidity, y = quality), data = rw) +
   labs(title = 'Quality by volatile.acidity(log10)') +
   geom_abline(intercept = 4, slope = -5)
 ```
+
 From the plot we can see that quality and volatile.acidity are negatively related.
 
 Next, let's feed in the model:
@@ -671,6 +694,7 @@ m2 <- update(m1, ~ . + sulphates)
 m3 <- update(m2, ~ . + volatile.acidity)
 mtable(m1, m2, m3)
 ```
+
 From the table, we know that even with nice . The model can only explains 33.6% of quality datas. 
 
 # Multivariate Analysis
@@ -685,73 +709,88 @@ looking at your feature(s) of interest?
 - There's negative relationship between quality and volatile.acisidty
 
 ### Were there any interesting or surprising interactions between features?
+
 Sulphates in Quality by volatile.acidity plot. The colors in the plot explains everything: 
 light on the top-left and condense on bottom-right.
 
 ### OPTIONAL: Did you create any models with your dataset? Discuss the \
 strengths and limitations of your model.
+
 Yes, I created a linear model using alcohol, sulphates and volatile.acisidty. 
 The model is built on the variables that has closer relationship with quality which make the model more robust. 
 The limitation is that since all the variables are in fact not strongly related with quality. As a result, the model only explains about 33% of quality. 
+
 ------
 
 # Final Plots and Summary
 
 ### Plot One
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # Explore alcohol
 ggplot(aes(alcohol), data = rw) +
   geom_histogram() +
   labs(title = 'Red Wine Alcohol') +
-  xlab('Alcohol(concentration of volumn percent) ') +
+  xlab('Alcohol (%) ') +
   ylab('Numbers of Red wines')
 ```
 
 ### Description One
-The histogram of Alcohol is right-skewed abd without very long-tailed shape which looks more familiar with the distribution of quality ratings. 
+
+The histogram of Alcohol(%) is right-skewed abd without very long-tailed shape which looks more familiar with the distribution of quality ratings. 
 
 ### Plot Two
+
 ```{r echo=FALSE}
 ggplot(aes(x = alcohol, y= quality), data = rw) + 
     geom_jitter(alpha= 1/3) +
     scale_x_log10(breaks=8:15) +
     ylim(2,8)  +
     labs(title = 'Alcohol(Log10) By Quality') +
-    xlab('Alcohol(concentration of volumn percent) ') +
+    xlab('Alcohol (%) ') +
     ylab('Quality')
 ```
+
 ```{r echo=FALSE}
 ggplot(aes(x = volatile.acidity, y= quality), data = rw) + 
     geom_jitter(alpha = 1/3) + 
     scale_x_log10() +
     xlim(0, 2)  +
     labs(title = 'Volatile.acidity(Log10) By Quality') +
-    xlab('Volatile.acidity') +
+    xlab('Volatile.acidity (g/cm^3)') +
     ylab('Quality')
 ```
 
 ### Description Two
-After taking the jitter and log transition, we can see that alcohol appears to have positive relationship with quality. Volatile.acidity appears to have negative relationship with quality. 
+
+After taking the jitter and log transition, we can see that alcohol appears to have positive relationship with quality. Volatile.acidity(g/cm^3) appears to have negative relationship with quality. 
 
 ### Plot Three
+
 ```{r echo=FALSE}
 ggplot(aes(x = volatile.acidity, y = quality), data = rw) +
   geom_jitter(aes(color= sulphates), alpha = 0.5) +
   geom_abline(intercept = 8, slope = -5)  +
-  labs(title = 'Volatile.acidity By Quality') +
-  xlab('Volatile.acidity') +
+  labs(title = 'Volatile.acidity By Quality', colour = "Sulphates (g/cm^3)") +
+  xlab('Volatile.acidity (g/cm^3)') +
   ylab('Quality')
 ```
 
 ### Description Three
 
-In this plot, we can clearly see the relationship between volatile.acidity and quality is negative. Besides, from the color we can see that light sulphates data exists more on the top-left in the plot while condense sulphates data appears mostly on the bottom-right in the plot.
+In this plot, we can clearly see the relationship between volatile.acidity(g/cm^3) and quality is negative. Besides, from the color we can see that light sulphates data (g/cm^3) exists more on the top-left in the plot while condense sulphates data(g/cm^3) appears mostly on the bottom-right in the plot.
 
 ------
 
 # Reflection
 
-There might be other factors that effects the results of the analysis:
+Throughout the analysis, I was first blocked by the background knowledge of red wine. For me, all the chemical terms are so unfamiliar. I solved this by Google "red wine chemical compounds"" and read through some articles explaining all the terms.  
+
+My second challenge is that after finishing the "Univariate" section, I don't have a robust evidence of where I should move on to analyze, I can only "guess" what might be interesting to explore based on the shape of the histogram. This is solved after I started the bivariate section and using `cor()` and `ggpairs()` functions to find out which variables has strong relationship with quality. 
+
+Third, I reach a dead end that even though I apply the log transmition, the data still didn't look good. I'm not able to find anything interesting based on the plto. The issue was solved after I go back to watch the courses and applying `jitter()` to my plot. After adding this function, the plot looks better and I'm able to tell something in the data. 
+
+Besides, there might be other factors that effects the results of the analysis:
 - Country/Region: where each red wine is produced.
 - Storage: is the wine stored properly?
 - Year of production: this might effects the quality a lot. 
