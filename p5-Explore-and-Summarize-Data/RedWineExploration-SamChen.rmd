@@ -1,8 +1,3 @@
----
-output:
-  html_document: default
-  pdf_document: default
----
 Red Wine Exploration by Sam Chen
 ========================================================
 
@@ -60,8 +55,8 @@ First, let's take a look for the distribution of quality.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # Explore quality
-ggplot(aes(quality), data = rw) +
-  geom_histogram()
+ggplot(rw, aes(x=factor(quality))) +
+  geom_bar()
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
@@ -95,7 +90,7 @@ Let's see the log plot.
 # qplot -- qplot(fixed.acidity, data = rw)
 ggplot(aes(fixed.acidity), data = rw) +
   geom_histogram() + 
-  scale_x_log10(breaks=4:16)
+  scale_x_log10(breaks=1:10)
 ```
 
 The Log plot is much closer to the bell curve of a normal distribution.
@@ -175,7 +170,7 @@ From the histogram of residual.sugar, we can see that it's very long-tailed. Let
 # Explore residual.sugar
 ggplot(aes(residual.sugar), data = rw) +
   geom_histogram() + 
-  scale_x_log10()
+  scale_x_log10(breaks=1:10)
 ```
 
 We can see from the log plot that the distribution for residual.sugar is more close to normal distribution.
@@ -204,7 +199,7 @@ From the histogram of chlorides, we can see that it's very long-tailed. Let's se
 # Explore chlorides
 ggplot(aes(chlorides), data = rw) +
   geom_histogram() + 
-  scale_x_log10()
+  scale_x_log10(breaks=0.05)
 ```
 
 The Log plot is much closer to the bell curve of a normal distribution.
@@ -234,7 +229,7 @@ The histogram of free,sulfur.dioxide is right-skewed. Let's see the log plot.
 # Explore free.sulfur.dioxide -- log10
 ggplot(aes(free.sulfur.dioxide), data = rw) +
   geom_histogram() +
-  scale_x_log10()
+  scale_x_log10(breaks=1:10)
 ```
 
 Let's see the summary for free.sulfur.dioxide:
@@ -262,7 +257,7 @@ The histogram of total.sulfur.dioxide is long-tailed. Let's see the log plot.
 # Explore free.sulfur.dioxide -- log
 ggplot(aes(total.sulfur.dioxide), data = rw) +
   geom_histogram() +
-  scale_x_log10()
+  scale_x_log10(breaks=10,100)
 ```
 
 The log plot for total.sulfur.dioxide is close to the bell surve. 
@@ -331,7 +326,7 @@ It seems that the distribution for sulphates is right-skewed. Let's see the log 
 # Explore sulphates -- log
 ggplot(aes(sulphates), data = rw) +
   geom_histogram() +
-  scale_x_log10()
+  scale_x_log10(breaks=0:2)
 ```
 
 The log plot for sulphates is more close to the bell curve.
@@ -360,7 +355,7 @@ The distribution for the alcohol shown in this histogram is right-skewed. Let's 
 # Explore alcohol -- log
 ggplot(aes(alcohol), data = rw) +
   geom_histogram() +
-  scale_x_log10()
+  scale_x_log10(breaks=10:20)
 ```
 
 Let's see the summary for alcohol:
